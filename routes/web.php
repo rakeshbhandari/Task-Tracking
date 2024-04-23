@@ -24,20 +24,33 @@ Route::get('/tasks', function () {
 Route::view('/tasks/create', 'create')
     ->name('tasks.create');
 
-    
+
 Route::get('/tasks/{id}', function ($id) {
     return view('show', ['task' => Task::findorFail($id)]);
 })->name('tasks.show');
 
 
 Route::post('/tasks', function (Request $request) {
-    dd($request->all());
+    $data = $request->validate([
+        'title' => 'required|max:255',
+        'description' => 'required',
+        'long_description' => 'required',
+    ]);
+
+    // NOTE: $task = new Task and $task->save(); will trigger an insert query in database
+    $task = new Task;
+    $task->title = $data['title'];
+    $task->description = $data['description'];
+    $task->long_description = $data['long_description'];
+    $task->save();
+
+    return redirect()->route('tasks.show', ['id' => $task->id]);
 })->name('tasks.store');
 
 
 
 
-// providing name to the route
+// providing name to route
 // Route::get('/about', function () {
 //     return "About Us";
 // })->name('about');
