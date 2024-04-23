@@ -15,10 +15,10 @@ Route::get('/', function () {
 
 
 Route::get('/tasks', function () {
-    return view(
-        'index',
-        ['tasks' => Task::latest()->get()]
-    );
+    return view('index', [
+        //paginate(10) will show 10 records per page
+        'tasks' => Task::latest()->paginate(10) //latest() will show the latest record first
+    ]);
 })->name('tasks.index');
 
 
