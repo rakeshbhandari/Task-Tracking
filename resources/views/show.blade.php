@@ -1,9 +1,13 @@
 @extends('layouts.app')
+<div>
+    <a href="{{ route('tasks.index') }}">Home</a>
+</div>
 
 
 @section('title', $task -> title)
 
 @section('content')
+
 
 <p>
     {{ $task ->description}}
@@ -21,10 +25,12 @@
     {{ $task ->updated_at }}
 </p>
 
-
+<div>
+    <a href="{{ route('tasks.edit', ['task'=> $task]) }}">Edit</a>
+</div>
 
 <div>
-    <form action="{{route('tasks.destroy', ['task'=> $task->id])}}" method="POST">
+    <form action="{{route('tasks.destroy', ['task'=> $task])}}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button>

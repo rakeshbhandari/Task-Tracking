@@ -4,16 +4,22 @@
 @section('title', 'List of my daily tasks')
 
 @section('content')
-@forelse ( $tasks as $tasks )
+
 <div>
-    <a href="{{ route('tasks.show', ['task'=> $tasks->id]) }}">{{ $tasks->title }} </a href>
+    <a href="{{ route('tasks.create') }}">Add Task</a>
+
+</div>
+
+@forelse ( $tasks as $task )
+<div>
+    <a href="{{ route('tasks.show', ['task'=> $task->id]) }}">{{ $task->title }} </a href>
 </div>
 
 @empty
 <div>There are no tasks.</div>
 @endforelse ( )
 
-<!--adding pagination  -->
+
 @if ($tasks->count())
 <nav>
     {{$tasks->links() }}

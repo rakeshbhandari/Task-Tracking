@@ -30,7 +30,7 @@ Route::get('/tasks/{task}/edit', function (Task $task) {
         'edit',
         ['task' => $task]
     );
-})->name('tasks.show');
+})->name('tasks.edit');
 
 Route::get('/tasks/{task}', function (Task $task) {
     return view(
@@ -68,6 +68,14 @@ Route::delete('/tasks/{task}', function (Task $task) {
     return redirect()->route('tasks.index')
         ->with('success', 'Task deleted successfully!');
 })->name('tasks.destroy');
+
+
+Route::put('tasks/{task}/toggle-complete', function (Task $task) {
+    $task->completed = true;
+    $task->save();
+    return redirect()->route('tasks.index')
+        ->with('success', 'Task completed successfully!');
+})->name('tasks.complete');
 
 //all the routes that are not defined will be redirected to this route
 Route::fallback(function () {
