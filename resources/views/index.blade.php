@@ -6,7 +6,7 @@
 @section('content')
 @forelse ( $tasks as $tasks )
 <div>
-    <a href="{{ route('tasks.show', ['id'=> $tasks->id]) }}">{{ $tasks->title }} </a href>
+    <a href="{{ route('tasks.show', ['task'=> $tasks->id]) }}">{{ $tasks->title }} </a href>
 </div>
 
 @empty
