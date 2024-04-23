@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>My Daily Task Planner</title>
-
+    @yield('styles')
 
 </head>
 
@@ -18,6 +18,13 @@
 
 
     <div>
+
+        @if (session()->has('success'))
+        <div>
+            {{ session('success') }}
+        </div>
+
+        @endif
         @yield('content')
     </div>
 </body>
