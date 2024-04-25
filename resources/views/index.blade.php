@@ -11,10 +11,11 @@
 </nav>
 
 @forelse ( $tasks as $task )
-<div>
-    <a class="hover:bg-slate-100" href="{{ route('tasks.show',
-     ['task'=> $task->id]) }}" @class(['line-through'=>$task->completed] )
-        class="hover:bg-slate-100">{{ $task->title }} </a href>
+
+
+<div @class(['line-through'=>$task->completed] )>
+    <a class="hover:bg-slate-300" href="{{ route('tasks.show',
+     ['task'=> $task->id]) }}">{{ $task->title }} </a>
 </div>
 
 @empty
