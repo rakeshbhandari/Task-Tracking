@@ -1,18 +1,20 @@
 @extends('layouts.app')
 
 
-@section('title', 'List of my daily tasks')
+@section('title', 'My Daily Tasks')
 
 @section('content')
 
-<div>
-    <a href="{{ route('tasks.create') }}">Add Task</a>
+<nav class="mb-4">
+    <a href="{{ route('tasks.create') }}" class="font-medium text-grey-700 underline decoration-pink-500">Add Task</a>
 
-</div>
+</nav>
 
 @forelse ( $tasks as $task )
 <div>
-    <a href="{{ route('tasks.show', ['task'=> $task->id]) }}">{{ $task->title }} </a href>
+    <a class="hover:bg-slate-100" href="{{ route('tasks.show',
+     ['task'=> $task->id]) }}" @class(['line-through'=>$task->completed] )
+        class="hover:bg-slate-100">{{ $task->title }} </a href>
 </div>
 
 @empty
@@ -21,7 +23,7 @@
 
 
 @if ($tasks->count())
-<nav>
+<nav class="mt-4">
     {{$tasks->links() }}
 </nav>
 

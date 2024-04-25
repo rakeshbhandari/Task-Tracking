@@ -3,28 +3,31 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My Daily Task Planner</title>
+
+    <title>Daily Task Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
     @yield('styles')
 
 </head>
 
-<body>
+<body class="container mx-auto mt-10 mb-10 max-w-lg ">
 
-    <h1>
+    <h1 class="text-5xl mt-4 mb-4">
         @yield('title')
     </h1>
 
 
     <div>
 
-        @if (session()->has('success'))
-        <div>
-            {{ session('success') }}
-        </div>
+        <!-- @if (session()->has('success')) -->
+        <!-- <div>{{ session('success') }}</div> -->
+        <!-- @endif -->
 
-        @endif
+        <div class="mb-10 rounded border border-green-400 bg-green-100 px-4 py-3 text-lg text-green-700">
+            <strong class="font-bold">Success!</strong>
+            <div>This is a flash message.</div>
+        </div>
         @yield('content')
     </div>
 </body>
